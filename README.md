@@ -3,7 +3,7 @@
 A light-weight & Proxyless discord invite joiner written in GoLang
 
 # Disclaimer
-For Educationa purposes only. Use at your own risk. Automation of discord accounts also known as selfbots is a violation of discord terms of service and community guidelines and might result in your account(s) being terminated. This program is for demonstration purposes only that server joining can be automated as of October 2021. Please do not use this for Raiding/Spamming/Harassing or any other malicious purposes. 
+For Educational purposes only. Use at your own risk. Automation of discord accounts also known as selfbots is a violation of discord terms of service and community guidelines and might result in your account(s) being terminated. This program is for demonstration purposes only that server joining can be automated as of October 2021. Please do not use this for Raiding/Spamming/Harassing or any other malicious purposes. 
 
 ![WindowsTerminal_nF3xDjpAHW](https://user-images.githubusercontent.com/79518089/137035828-0245466e-7428-4c2f-849d-876c90bae3be.png)
 
