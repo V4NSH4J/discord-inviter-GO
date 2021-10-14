@@ -1,6 +1,6 @@
 # DiscordInviterGO!
 
-A light-weight & Proxyless discord invite joiner written in GoLang
+Fastest light-weight Discord server joiner written in GO
 
 # Disclaimer
 For Educational purposes only. Use at your own risk. Automation of discord accounts also known as selfbots is a violation of discord terms of service and community guidelines and might result in your account(s) being terminated. This program is for demonstration purposes only that server joining can be automated as of October 2021. Please do not use this for Raiding/Spamming/Harassing or any other malicious purposes. 
@@ -9,7 +9,7 @@ For Educational purposes only. Use at your own risk. Automation of discord accou
 
 
 # Features 
-1) Can join upto 50 accounts per minute
+1) Can join upto 3000 accounts per minute
 2) Uses latest discord HTTP API resulting in non-phonelocked accounts!
 3) Clean, simple and Light-weight
 4) Does not require proxies although recommended
