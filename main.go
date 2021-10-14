@@ -11,10 +11,9 @@ import (
 	"log"
 	"bytes"
 	"os"
+	"sync"
 	"bufio"
 	"github.com/fatih/color"
-	
-
 )
 
 
@@ -165,10 +164,15 @@ func main() {
 	}
 	start := time.Now()
 	color.Red("Starting joining guilds with tokens!")
+	var wg sync.WaitGroup
+	wg.Add(len(lines))
 	for i:=0; i < len(lines); i++{
-		joinGuild(code, lines[i])
-
+		go func (i int) {
+			defer wg.Done()
+			joinGuild(code, lines[i])
+		}(i)
 	}
+	wg.Wait()
 	elapsed := time.Since(start)
 	color.Blue("Consider Starring this Repo on github for further updates! Happy Malicious Activity!")
 	fmt.Printf("Joining took only %s", elapsed)
