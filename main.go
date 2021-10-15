@@ -56,8 +56,6 @@ func getCookie() cookie {
 	}
 	defer resp.Body.Close()
 
-
-
 	Cookie := cookie{}
 	if resp.Cookies() != nil {
 		for _, cookie := range resp.Cookies() {
@@ -169,7 +167,7 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(len(lines))
 	for i := 0; i < len(lines); i++ {
-		time.Sleep(10 * time.Millisecond)
+		time.Sleep(5 * time.Millisecond)
 		go func(i int) {
 			defer wg.Done()
 			joinGuild(code, lines[i])
