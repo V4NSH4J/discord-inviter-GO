@@ -35,9 +35,11 @@ For the average Joe, you can simply download a compiled version from the release
 3) Navigate to the directory of the source code containing main.go using 
 4) Simply type "go build" and a binary should pop up!
 
-
 # Other interesting stuff by me
-(Discord Invite Joiner)[https://github.com/V4NSH4J/discord-inviter-GO] - Joins given tokens to a server
-(Discord Token Checker)[https://github.com/V4NSH4J/FAST-discord-token-checker] - Checks given tokens and records their information
-(Discord Mass DM)[https://github.com/V4NSH4J/discord-mass-DM-GO] - DMs all users of a server or DM's a discord user from multiple accounts
-(Dankgrinder)[https://github.com/V4NSH4J/dankgrinder] - An Advanced automation tool for Dankmemer
+[Discord Invite Joiner](https://github.com/V4NSH4J/discord-inviter-GO) - Joins given tokens to a server
+
+[Discord Token Checker](https://github.com/V4NSH4J/FAST-discord-token-checker) - Checks given tokens and records their information
+
+[Discord Mass DM](https://github.com/V4NSH4J/discord-mass-DM-GO) - DMs all users of a server or DM's a discord user from multiple accounts
+
+[Dankgrinder](https://github.com/V4NSH4J/dankgrinder) - An Advanced automation tool for Dankmemer
