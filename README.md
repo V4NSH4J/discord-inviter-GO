@@ -8,6 +8,10 @@ For Educational purposes only. Use at your own risk. Automation of discord accou
 ![WindowsTerminal_nF3xDjpAHW](https://user-images.githubusercontent.com/79518089/137035828-0245466e-7428-4c2f-849d-876c90bae3be.png)
 
 
+# Star the Repo ⭐
+Please star the repo, it really helps me out and allows me to contribute more.
+
+
 # Features 
 1) Can join upto 3000 accounts per minute
 2) Uses latest discord HTTP API resulting in non-phonelocked accounts!
