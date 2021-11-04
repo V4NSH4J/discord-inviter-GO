@@ -29,8 +29,9 @@ Please star the repo, it really helps me out and allows me to contribute more.
 
 
 # How to Use? 
-Load tokens in the file tokens.txt in the same directory as the executable. Simply run the executable and enter your discord server invite code. 
-If your invite link is "https://discord.gg/followtos" then the invite code is "followtos" without quotes. This is essential, as of now, the program will only work with invite codes. Simply press enter and watch your tokens join the server! 
+Load tokens in the file tokens.txt in the same directory as the executable. Simply run the executable and enter your discord server invite code.  For multi mode, load your invite CODES in invites.txt
+If your invite link is "https://discord.gg/followtos" then the invite code is "followtos" without quotes. This is essential, as of now, the program will only work with invite codes. Simply follow instructions on screen and add all delays in seconds and watch your tokens join the server(s)! 
+
 
 # Building from Source 
 For the average Joe, you can simply download a compiled version from the releases (https://github.com/V4NSH4J/DiscordInviterGO/releases). But here's how to build from source! 
