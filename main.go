@@ -15,9 +15,16 @@ import (
 	"sync"
 	"time"
 
+	"github.com/andybalholm/brotli"
 	"github.com/fatih/color"
 )
 
+
+func DecodeBr(data []byte) ([]byte, error) {
+	r := bytes.NewReader(data)
+	br := brotli.NewReader(r)
+	return ioutil.ReadAll(br)
+}
 func getFingerprint() string {
 	log.SetOutput(ioutil.Discard)
 	resp, err := http.Get("https://discordapp.com/api/v9/experiments")
@@ -71,6 +78,28 @@ func getCookie() cookie {
 	color.Yellow("INFO: Obtained Cookies: " + "__dcfduid= " + Cookie.Dcfduid + " " + "__sdcfduid= " + Cookie.Sdcfduid)
 	return Cookie
 }
+
+
+func Bypass(serverid string, token string) {
+	url := "https://discord.com/api/v9/guilds/" + serverid + "/requests/@me"
+	json_data := "{\"response\":true}"
+	req, err := http.NewRequest("PUT", url, bytes.NewBuffer([]byte(json_data)))
+	if err != nil {
+		color.Red("Error while making http request %v \n", err)
+	}
+	req.Header.Set("authorization", token)
+	httpClient := http.Client{}
+	resp, err := httpClient.Do(commonHeaders(req))
+	if err != nil {
+		color.Red("Error while sending HTTP request bypass %v \n", err)
+	}
+	if resp.StatusCode == 201 || resp.StatusCode == 204 {
+		color.Green("Successfully bypassed token")
+	} else {
+		color.Red("Failed to bypass Token %v", resp.StatusCode)
+	}
+
+}
 func joinGuild(inviteCode string, token string) {
 	url := "https://discord.com/api/v9/invites/" + inviteCode
 	fmt.Println(url)
@@ -99,8 +128,36 @@ func joinGuild(inviteCode string, token string) {
 	if err != nil {
 		color.Red("ERR: Error while sending request \n")
 	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	p, m := DecodeBr(body)
+	if m != nil {
+		color.Red("%v",m)
+	}
+	
+	type guild struct {
+		ID string `json:"id"`
+		Name string `json:"name"`
+	}
+	type joinresponse struct {
+		VerificationForm bool `json:"show_verification_form"`
+		GuildObj guild `json:"guild"`
+	}
+
+
+	var ResponseBody joinresponse
+	json.Unmarshal(p, &ResponseBody)
+
+
 	if resp.StatusCode == 200 {
 		color.Green("Succesfully joined guild")
+		if ResponseBody.VerificationForm {
+			if len(ResponseBody.GuildObj.ID) != 0 {
+				Bypass(ResponseBody.GuildObj.ID, token)
+			}	
+		}
 	}
 	if resp.StatusCode != 200 {
 		fmt.Printf("ERR: Unexpected Status code %v while joining token %v \n", resp.StatusCode, token)
@@ -195,8 +252,27 @@ func main() {
 		elapsed := time.Since(start)
 		color.Blue("Consider Starring this Repo on github for further updates! Happy Malicious Activity!")
 		fmt.Printf("Joining took only %s", elapsed)
-		color.Red("Press ENTER to EXIT")
-		bufio.NewReader(os.Stdin).ReadBytes('\n')
+		color.Blue("Do you wish to bypass member screening if any? then enter the serverID. Leave empty to exit the program")
+		var serverID string 
+		fmt.Scanln(&serverID)
+		if serverID == "" {
+			return
+		} else {
+			var wg sync.WaitGroup
+			wg.Add(len(lines))
+			for i := 0; i < len(lines); i++ {
+				time.Sleep(5 * time.Millisecond)
+				go func(i int) {
+					defer wg.Done()
+					Bypass(serverID, lines[i])
+				}(i)
+			}
+			wg.Wait()
+			
+		}
+
+		
+
 	} else if mode == 1 {
 		color.Blue("Make sure that invites.txt contains one Invite CODE on each line. It would not work with Invite links, only CODES.s")
 		invites, err := readLines("invites.txt")
@@ -242,7 +318,7 @@ func main() {
 		elapsed := time.Since(start)
 		color.Blue("Consider Starring this Repo on github for further updates! Happy Malicious Activity!")
 		fmt.Printf("Joining took only %s", elapsed)
-		color.Red("Press ENTER to EXIT")
+		color.Red("\nPress ENTER to EXIT")
 		bufio.NewReader(os.Stdin).ReadBytes('\n')
 
 	}
