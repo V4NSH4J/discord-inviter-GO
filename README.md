@@ -1,3 +1,4 @@
+The inviter in this repository was incorporated in [DMDGO](https://github.com/V4NSH4J/discord-mass-dm-GO). This is no longer maintained. DMDGO has this invite joiner along updated with proxies and captcha solving APIs.
 # DiscordInviterGO!
 
 Fastest light-weight Discord server joiner written in GO
